@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.scss';
+import 'antd/dist/antd.css';
+import { Popover, Button } from 'antd';
 import Group from '../Components/Group';
 
 class App extends Component {
@@ -74,23 +76,37 @@ class App extends Component {
         <section>
           <h1>讲师列表</h1>
           <div className="all-data">
-            <ul>
-                {this.state.trainers.map((trainer) => (
-                  <li>{trainer.id}. {trainer.name}</li>
-                ))}             
-                <input type="text" placeholder="+添加讲师" onKeyDown={this.addTrainer}/>
-              </ul>
+            {this.state.trainers.map((trainer) => (
+                <Popover content={
+                  <div>
+                    <span>id:{trainer.id},</span>
+                    <span>name:{trainer.name}</span>
+                  </div>} 
+                  title="">
+                  <span className="trainer"><Button type="primary">{trainer.id}. {trainer.name}</Button></span>
+                </Popover>
+            ))}             
+            <Button type="primary" className="trainer">+添加讲师</Button>
           </div>
         </section>
         <section>
           <h1>学员列表</h1>
           <div className="all-data">
-            <ul>
-                {this.state.trainees.map((trainee) => (
-                  <li>{trainee.id}. {trainee.name}</li>
-                ))}             
-                <input type="text" placeholder="+添加学员" onKeyDown={this.addTrainee}/>
-              </ul>
+            {this.state.trainees.map((trainee) => (
+              <Popover content={
+                <div>
+                  <span>id:{trainee.id},</span>
+                  <span>name:{trainee.name},</span>
+                  <span>office:{trainee.office},</span>
+                  <span>email:{trainee.email},</span>
+                  <span>github:{trainee.github},</span>
+                  <span>zoomId:{trainee.zoomId},</span>
+                </div>} 
+                title="">
+                  <span className="trainee"><Button type="primary">{trainee.id}. {trainee.name}</Button></span>
+                </Popover>
+            ))}             
+            <Button type="primary" className="trainee">+添加学员</Button>
           </div>
         </section>
       </div>

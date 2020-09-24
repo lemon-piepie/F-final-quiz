@@ -1,10 +1,11 @@
 .App {
     width: 1500px;
     margin: 0 auto;
-}
-.App h1 {
-    margin: 0;
-    margin-left: 50px;
+    
+    h1 {
+        margin: 0;
+        margin-left: 50px;
+    }
 }
 .App .first-line {
     display: flex;
@@ -13,17 +14,19 @@
     padding: 10px 10px 20px 0;
     align-items: center;
     height: 2em;
+
+    button {
+        margin-right: 60px;
+        padding: 0 20px;
+        height: 2em;
+        line-height: 2em;
+        text-align: center;
+        background-color: red;
+        color: white;
+        border: none;
+    }
 }
-.App .first-line button {
-    margin-right: 60px;
-    padding: 0 20px;
-    height: 2em;
-    line-height: 2em;
-    text-align: center;
-    background-color: red;
-    color: white;
-    border: none;
-}
+
 .groupListHide {
     display: none;
 }
@@ -33,26 +36,16 @@
 .studentList h1 {
     margin-left: 10px;
 }
-.App .all-data ul{
+.App .all-data{
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-content: space-between;
+    margin:20px 50px;
 }
-.App .all-data ul li {
-    width: 135px;
-    height: 1.5em;
-    line-height: 1.5em;
-    padding: 10px;
-    margin: 10px;
-    background-color: #eeeeee;
+.trainer {
+    margin-right: 50px;
 }
-.App .all-data input[type="text"] {
-    height: 1.5em;
-    line-height: 1.5em;
-    width: 90px;
-    border: none;
-    padding: 10px;
-    margin: 10px;
-    background-color: #eeeeee;
+.trainee {
+    margin-right: 50px;
 }
