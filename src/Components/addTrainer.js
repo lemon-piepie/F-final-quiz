@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Link, BrowserRouter } from 'react-router-dom';
 import 'antd/dist/antd.css';
-import { Form, Input } from "antd";
+import { Form, Input, message } from "antd";
 import './addTrainer.scss';
 
 class addTrainer extends Component {
@@ -22,7 +22,7 @@ class addTrainer extends Component {
           },
         })
           .then((result) => {
-              alert("添加讲师成功！请返回主页")
+            message.info('添加讲师成功！请返回主页');
           })
           .catch((error) => {
             console.log(error.message);

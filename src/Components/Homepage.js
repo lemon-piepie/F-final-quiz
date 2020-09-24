@@ -2,15 +2,41 @@ import React, { Component } from 'react';
 import { Link, BrowserRouter } from 'react-router-dom';
 import '../App/App.scss'
 import 'antd/dist/antd.css';
-import { Popover, Button } from 'antd';
+import { Popover, Button, Modal, message } from 'antd';
 import Group from './Group';
 
 class Homepage extends Component {
   state = {
+    visible:false,
     showGroup:false,
     trainees:[],
     trainers:[],
   }
+
+  showModal = (event) => {
+    document.getElementsByClassName(event.target.id).visible=true
+    console.log(event.target.id)
+  };
+
+  handleDeleteTraineeOk = (event) => {
+    this.deleteTrainee(event.target.id)
+    this.setState({
+      visible: false,
+    });
+  };
+
+  handleDeleteTrainerOk = (event) => {
+    this.deleteTrainer(event.target.id)
+    this.setState({
+      visible: false,
+    });
+  };
+
+  handleCancel = e => {
+    this.setState({
+      visible: false,
+    });
+  };
   
   componentDidMount(){
     const TraineeUrl = 'http://localhost:8080/trainees';
@@ -48,11 +74,35 @@ class Homepage extends Component {
     });
   };
 
-  addData = (event) => {
-    if(event.keyCode === 13) {
-      console.log("enter");
-    }
-  }
+  deleteTrainee = async (traineeId) => {
+    return fetch("http://localhost:8080/trainees/{$traineeId}", {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((result) => {
+          message.info('删除学员成功！');
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
+  deleteTrainer = async (trainerId) => {
+    return fetch("http://localhost:8080/trainers/{$trainerId}", {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((result) => {
+          message.info('删除讲师成功！');
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
   showGroupList = () => {
     this.setState({
@@ -91,7 +141,17 @@ class Homepage extends Component {
                       <span>name:{trainer.name}</span>
                     </div>} 
                     title="">
-                      <span className="trainer"><Button type="primary">{trainer.id}. {trainer.name}</Button></span>
+                        <span className="trainer">
+                          <Button type="primary" onClick={this.showModal}>{trainer.id}. {trainer.name}</Button>
+                          <Modal
+                            title="删除讲师"
+                            visible={this.state.visible}
+                            onOk={this.handleDeleteTrainerOk}
+                            onCancel={this.handleCancel}
+                            >
+                            <p>是否要删除讲师 {trainer.id}.{trainer.name}?</p>
+                            </Modal>
+                        </span>
                   </Popover>
               ))}             
               <Link to="/addTrainer"><Button type="primary" className="trainer" onClick={this.add}>+添加讲师</Button></Link>
@@ -101,6 +161,7 @@ class Homepage extends Component {
             <h1>学员列表</h1>
             <div className="all-data">
               {this.state.trainees.map((trainee) => (
+
                 <Popover content={
                   <div>
                     <span>id:{trainee.id},</span>
@@ -111,8 +172,19 @@ class Homepage extends Component {
                     <span>zoomId:{trainee.zoomId},</span>
                   </div>} 
                   title="">
-                    <span className="trainee"><Button type="primary">{trainee.id}. {trainee.name}</Button></span>
+                    <span className="trainee" id={trainee.id}>
+                        <Button type="primary" onClick={this.showModal} id={trainee.id}>{trainee.id}. {trainee.name}</Button>
+                        <Modal className={trainee.id}
+                        title="删除学员"
+                        visible={this.state.visible}
+                        onOk={this.handleDeleteTraineeOk}
+                        onCancel={this.handleCancel}
+                        >
+                        <p>是否要删除学员 {trainee.id}.{trainee.name}?</p>
+                        </Modal>
+                    </span>
                   </Popover>
+                  
               ))}             
               <Link to="/addTrainee"><Button type="primary" className="trainee" onClick={this.add}>+添加学员</Button></Link>
             </div>
