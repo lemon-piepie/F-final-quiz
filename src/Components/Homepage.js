@@ -94,7 +94,7 @@ class Homepage extends Component {
                       <span className="trainer"><Button type="primary">{trainer.id}. {trainer.name}</Button></span>
                   </Popover>
               ))}             
-              <Button type="primary" className="trainer">+添加讲师</Button>
+              <Link to="/addTrainer"><Button type="primary" className="trainer" onClick={this.add}>+添加讲师</Button></Link>
             </div>
           </section>
           <section>

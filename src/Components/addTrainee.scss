@@ -1,0 +1,30 @@
+.addTrainee {
+    background-color:  #f7f7f7;
+    height: 100vh;
+
+    .form {
+        width: 70%;
+        margin: 0 auto;
+
+        h1 {
+            margin-left: 150px;
+            line-height: 100px;
+            height: 100px;
+        }
+
+        .submit {
+            background-color: rgb(69, 152, 219);
+            border: none;
+            color: white;
+            width: 70px;
+            margin-right: 50px;
+        }
+
+        .cancle {
+            background-color: white;
+            color: black;
+            border: none;
+            width: 70px;
+        }
+    }
+}

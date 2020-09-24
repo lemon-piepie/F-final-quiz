@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Link, BrowserRouter } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import { Form, Input } from "antd";
+import './addTrainee.scss';
 
 class addTrainee extends Component {
 
@@ -32,6 +33,7 @@ class addTrainee extends Component {
     return (
         <BrowserRouter>
       <div className="addTrainee">
+        <div className="form">
         <h1>添加学员</h1>
         <Form
             className="form"
@@ -136,10 +138,11 @@ class addTrainee extends Component {
           </Form.Item>
 
           <Form.Item>
-            <button type="submit">提交</button>
-            <Link to="/"><button type="cancle" onClick={this.cancle}>取消</button></Link>
+            <button type="submit" className="submit">提交</button>
+            <Link to="/"><button type="cancle" className="cancle" onClick={this.cancle}>取消</button></Link>
           </Form.Item>
         </Form>
+        </div>
       </div>
       </BrowserRouter>
     );
