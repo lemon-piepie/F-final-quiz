@@ -12,9 +12,9 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={Homepage}></Route>
-          <Route exact path="/addTrainee" component={addTrainee}></Route>
-          <Route exact path="/addTrainer" component={addTrainer}></Route>
+          <Route exact path="/" component={Homepage} />
+          <Route exact path="/addTrainee" component={addTrainee} />
+          <Route exact path="/addTrainer" component={addTrainer} />
         </Switch>
       </BrowserRouter>
     );
